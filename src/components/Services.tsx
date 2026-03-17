@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { MoveRight } from 'lucide-react';
 import ScrollFloat from './ScrollFloat';
 
 const services = [
@@ -26,6 +27,13 @@ const services = [
 export const Services = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [constraints, setConstraints] = React.useState({ left: 0, right: 0 });
+  const [hasScrolledCards, setHasScrolledCards] = React.useState(false);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (e.currentTarget.scrollLeft > 20 && !hasScrolledCards) {
+      setHasScrolledCards(true);
+    }
+  };
 
   React.useEffect(() => {
     // Scroll handling is now native
@@ -45,24 +53,39 @@ export const Services = () => {
             </ScrollFloat>
             <p className="mt-4 max-w-md text-offwhite/50">Des prestations sur mesure pour une allure impeccable au quotidien.</p>
           </div>
-          <div className="text-right">
+          <div className="flex flex-col items-start md:items-end gap-3 md:text-right">
             <span className="text-xs font-bold tracking-[0.3em] text-gradient-gold">MENU DE SOINS</span>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: hasScrolledCards ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-widest text-offwhite/50 uppercase"
+            >
+              <span>Faire défiler</span>
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              >
+                <MoveRight className="w-3 h-3 md:w-4 md:h-4" />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
 
         <div className="relative py-10 -my-10 px-6 -mx-6 md:px-20 md:-mx-20">
           <div
             ref={containerRef}
+            onScroll={handleScroll}
             data-lenis-prevent="true"
             className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-premium py-4 px-4 pb-8"
           >
             {services.map((service, index) => (
               <motion.div
                 key={service.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, scale: 0.9, x: 50 }}
+                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.1, type: "spring", stiffness: 100, damping: 20 }}
                 className="group relative flex-none w-[85vw] md:w-[380px] border-gradient-gold rounded-[40px] p-8 md:p-10 transition-transform hover:scale-[1.05] z-0 hover:z-10 snap-center"
               >
                 <div className="flex flex-col gap-6 h-full pointer-events-none text-offwhite">

@@ -53,7 +53,7 @@ export const Barbers = () => {
           >
             Nos coiffeurs
           </ScrollFloat>
-          <p className="mx-auto mt-4 max-w-xl text-offwhite/50">Rencontrez l'équipe qui redéfinit les standards du grooming.</p>
+          <p className="mx-auto mt-4 max-w-xl text-offwhite/50">Rencontrez l'équipe qui redéfinit les standards de la coiffure.</p>
         </div>
 
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
