@@ -80,12 +80,8 @@ export const Services = () => {
             className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-premium py-4 px-4 pb-8"
           >
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={service.name}
-                initial={{ opacity: 0, scale: 0.9, x: 50 }}
-                whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1, type: "spring", stiffness: 100, damping: 20 }}
                 className="group relative flex-none w-[85vw] md:w-[380px] border-gradient-gold rounded-[40px] p-8 md:p-10 transition-transform hover:scale-[1.05] z-0 hover:z-10 snap-center"
               >
                 <div className="flex flex-col gap-6 h-full pointer-events-none text-offwhite">
@@ -102,7 +98,7 @@ export const Services = () => {
                     {service.desc}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
             {/* Added spacer to allow last card to clear the gradient */}
             <div className="flex-none w-20 md:w-40 h-full" />
