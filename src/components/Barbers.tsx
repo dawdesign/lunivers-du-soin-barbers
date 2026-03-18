@@ -17,12 +17,6 @@ const barbers = [
     desc: 'Expert en dégradés modernes et designs créatifs.'
   },
   {
-    name: 'Jef',
-    role: 'Artiste Barbier',
-    image: 'https://i.imgur.com/BckJCa3.jpeg',
-    desc: 'Passionné par le soin de la barbe et les rituels de bien-être.'
-  },
-  {
     name: 'Soulymane',
     role: 'Expert Barbier',
     image: 'https://i.imgur.com/1Ur5PWG.jpeg',
@@ -56,7 +50,7 @@ export const Barbers = () => {
           <p className="mx-auto mt-4 max-w-xl text-offwhite/50">Rencontrez l'équipe qui redéfinit les standards de la coiffure.</p>
         </div>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {barbers.map((barber, index) => (
             <motion.div
               key={barber.name}
