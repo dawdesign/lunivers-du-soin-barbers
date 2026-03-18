@@ -103,7 +103,25 @@ export const Services = () => {
             {/* Added spacer to allow last card to clear the gradient */}
             <div className="flex-none w-20 md:w-40 h-full" />
           </div>
+          
+          {/* Desktop fade gradient */}
           <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-noir to-transparent z-10 hidden md:block" />
+          
+          {/* Mobile scroll indicator */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: hasScrolledCards ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 pointer-events-none md:hidden"
+          >
+            <motion.div
+              animate={{ x: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="bg-noir/80 p-3 rounded-full backdrop-blur-md border border-white/10 text-white shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            >
+              <MoveRight className="w-5 h-5 text-gold" />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
